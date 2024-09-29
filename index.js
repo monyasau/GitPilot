@@ -1,6 +1,5 @@
-// src/git-manager.js
-const simpleGit = require('simple-git');
-const git = simpleGit();
+import simpleGit from 'simple-git';
+import inquirer from 'inquirer';
 
 class GitManager {
   constructor() {
@@ -9,12 +8,65 @@ class GitManager {
 
   async commit(message) {
     try {
-      await this.git.commit(message);
-      console.log(`Committed with message: "${message}"`);
+      // Check for staged files
+      const status = await this.git.status();
+
+      if (status.staged && Object.keys(status.staged).length > 0) {
+        // If there are staged files, commit them
+        await this.git.commit(message);
+        console.log(`Committed with message: "${message}"`);
+      } else {
+        // No staged files; let the user select files to commit
+        await this.selectFilesToCommit(message);
+      }
     } catch (error) {
       console.error("Error while committing:", error);
     }
   }
+
+  async selectFilesToCommit(message) {
+    try {
+      const status = await this.git.status();
+      // Check the files that are modified but not staged
+      let fileNames=[]
+      const changedFiles = Object.keys(status.files).filter(file => 
+        status.files[file].working_dir === 'M'|'?' // M means modified in working directory while ?  means new file
+      );
+  status.files.forEach((a)=>{fileNames.push(`${a.path} ${a.working_dir==="M"?"":"(New)"}`)})
+      if (changedFiles.length === 0) {
+        console.log("No changed files to commit.");
+        return; // No files to commit
+      }
+  
+      // Add "All *" option to the list
+      const choices = ['All *', ...fileNames];
+  
+      const answers = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'filesToCommit',
+          message: 'Select files to commit: ',
+          choices: choices,
+        },
+      ]);
+  
+      const selectedFiles = answers.filesToCommit.trim();
+      // If "All *" is selected, stage all changed files
+      if (selectedFiles === 'All *') {
+        await this.git.add('.');
+      } else {
+        // Stage only the selected file(s)
+        await this.git.add(selectedFiles);
+      }
+  
+      // Finally, commit the selected files
+      await this.git.commit(message);
+      console.log(`Committed files: ${selectedFiles}`);
+    } catch (error) {
+      console.error("Error while selecting files to commit:", error);
+    }
+  }
+  
 
   async push(branch = 'main') {
     try {
@@ -42,6 +94,7 @@ class GitManager {
       console.error("Error while creating branch:", error);
     }
   }
+
   async backdateCommit(message, date) {
     try {
       const options = {
@@ -53,6 +106,7 @@ class GitManager {
       console.error("Error while backdating commit:", error);
     }
   }
+
   async amendCommit(message) {
     try {
       await this.git.commit(message, undefined, { '--amend': true });
@@ -61,6 +115,7 @@ class GitManager {
       console.error("Error while amending commit:", error);
     }
   }
+
   async cherryPick(commitHash) {
     try {
       await this.git.raw(['cherry-pick', commitHash]);
@@ -69,7 +124,7 @@ class GitManager {
       console.error("Error while cherry-picking commit:", error);
     }
   }
-  
 }
 
-module.exports = GitManager;
+// module.exports = GitManager;
+export default GitManager;
