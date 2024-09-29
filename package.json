@@ -1,0 +1,17 @@
+{
+  "name": "git-manager",
+  "version": "1.0.0",
+  "description": "manage Git operations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "git"
+  ],
+  "author": "Olanrewaju Olajide",
+  "license": "ISC",
+  "dependencies": {
+    "simple-git": "^3.27.0"
+  }
+}
