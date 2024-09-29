@@ -1,7 +1,9 @@
 const { Command } = require('commander');
-const GitManager = require('./git-manager');
+const GitManager = require('./index');
 const program = new Command();
 const gitManager = new GitManager();
+
+
 
 program
   .command('commit <message>')
