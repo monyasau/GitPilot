@@ -1,6 +1,7 @@
 {
   "name": "git-manager",
   "version": "1.0.0",
+  "type": "module",
   "description": "manage Git operations",
   "main": "index.js",
   "scripts": {
