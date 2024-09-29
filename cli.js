@@ -1,5 +1,5 @@
-const { Command } = require('commander');
-const GitManager = require('./index');
+import { Command } from 'commander';
+import GitManager from './index.js';
 const program = new Command();
 const gitManager = new GitManager();
 
