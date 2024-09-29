@@ -12,6 +12,7 @@
   "author": "Olanrewaju Olajide",
   "license": "ISC",
   "dependencies": {
+    "commander": "^12.1.0",
     "simple-git": "^3.27.0"
   }
 }
