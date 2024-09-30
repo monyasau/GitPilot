@@ -26,27 +26,30 @@ program
     await gitManager.push(branch);
   });
 
-// Backdate commit command
-program
-  .command('backdate <message> <date>')
-  .description('Commit changes with a past date (use ISO 8601 date format)')
-  .action(async (message, date) => {
-    await gitManager.timedCommit(message, date);
-  });
-// Timed commit command
-program
-  .command('commitOn <message> <date>')
-  .description('Commit changes with a past date (use ISO 8601 date format)')
-  .action(async (message, date) => {
-    await gitManager.timedCommit(message, date);
-  });
-// Timed commit command
-program
-  .command('commiton <message> <date>')
-  .description('Commit changes with a past date (use ISO 8601 date format)')
-  .action(async (message, date) => {
-    await gitManager.timedCommit(message, date);
-  });
+  /* Timed commits */
+  // Backdate commit command
+  program
+    .command('backdate <message> <date>')
+    .description('Commit changes with a past date (use yyyy-mm-dd date format)')
+    .action(async (message, date) => {
+      await gitManager.timedCommit(message, date);
+    });
+  // Timed commit command
+  program
+    .command('commitOn <message> <date>')
+    .description('Commit changes with a past date (use yyyy-mm-dd date format)')
+    .action(async (message, date) => {
+      await gitManager.timedCommit(message, date);
+    });
+  // Timed commit command
+  program
+    .command('commiton <message> <date>')
+    .description('Commit changes with a past date (use yyyy-mm-dd date format)')
+    .action(async (message, date) => {
+      await gitManager.timedCommit(message, date);
+    });
+    /* Timed commits */
+
 
 // Pull command
 program
