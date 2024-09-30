@@ -17,10 +17,13 @@
     "inquirer": "^11.1.0",
     "simple-git": "^3.27.0"
   },
-  "repository": "https://github.com/monyasau/gitpilot.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monyasau/gitpilot.git"
+  },
   "bin": {
-    "gitpilot": "./cli.js",
-    "gp": "./cli.js",
-    "gpt": "./cli.js"
+    "gitpilot": "cli.js",
+    "gp": "cli.js",
+    "gpt": "cli.js"
   }
 }
