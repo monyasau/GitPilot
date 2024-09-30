@@ -6,7 +6,7 @@ Gitpilot is a command-line interface (CLI) tool designed to simplify and streaml
 
 ## Features
 
-- **Time travel** create and push commit into the past or future, yes i'm serious
+- **Time travel** create and push commit into the past or future, yes i'm serious, checkout( `backdate` | `commitOn` ) commands
 - **Commit changes** with a custom message or by selecting files interactively.
 - **Push and pull** changes to and from branches.
 - **Create and switch branches** effortlessly.
@@ -54,10 +54,22 @@ gitpilot commit "Your commit message"
 Undo the last commit:
 
 ```bash
-gitpilot undo-last-commit
+gitpilot commit "Your commit message"
 ```
 
-Amend the last commit:
+Commit to specific time (past or future):
+
+```bash
+gitpilot backdate "Your commit message" "2000-03-22"
+```
+
+> OR
+
+```bash
+gitpilot commitOn "Your commit message" "2000-03-22"
+```
+
+Edit the last commit's message:
 
 ```bash
 gitpilot amend-commit "New commit message"
@@ -152,4 +164,3 @@ Get Git configuration:
 ```bash
 gitpilot get-config <key>
 ```
-
