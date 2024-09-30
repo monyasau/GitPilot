@@ -1,5 +1,5 @@
 {
-  "name": "gitmanager",
+  "name": "gitpilot",
   "version": "1.0.0",
   "type": "module",
   "description": "A CLI tool for managing Git operations",
@@ -16,5 +16,9 @@
     "commander": "^12.1.0",
     "inquirer": "^11.1.0",
     "simple-git": "^3.27.0"
+  },
+  "repository": "https://github.com/monyasau/gitpilot.git",
+  "bin": {
+    "gitpilot": "./cli.js"
   }
 }
