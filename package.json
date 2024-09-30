@@ -1,9 +1,9 @@
 {
-  "name": "git-manager",
+  "name": "gitmanager",
   "version": "1.0.0",
   "type": "module",
-  "description": "manage Git operations",
-  "main": "index.js",
+  "description": "A CLI tool for managing Git operations",
+  "main": "cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
