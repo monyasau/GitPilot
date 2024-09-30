@@ -20,7 +20,7 @@ class GitManager {
         await this.selectFilesToCommit(message);
       }
     } catch (error) {
-      console.error("Error while committing:", error);
+      console.error("Error while committing:");
     }
   }
 
@@ -67,7 +67,7 @@ class GitManager {
       await this.git.commit(message);
       console.log(`Committed files: ${selectedFiles}`);
     } catch (error) {
-      console.error("Error while selecting files to commit:", error);
+      console.error("Error while selecting files to commit:");
     }
   }
   async undoLastCommit() {
@@ -75,7 +75,7 @@ class GitManager {
       await this.git.reset(['--soft', 'HEAD~1']);
       console.log('Last commit undone.');
     } catch (error) {
-      console.error("Error while undoing last commit:", error);
+      console.error("Error while undoing last commit:");
     }
   }
   
@@ -84,7 +84,7 @@ class GitManager {
       await this.git.reset(files);
       console.log('Files unstaged.');
     } catch (error) {
-      console.error("Error while unstaging files:", error);
+      console.error("Error while unstaging files:");
     }
   }
   async listBranches() {
@@ -92,7 +92,7 @@ class GitManager {
       const branchSummary = await this.git.branch();
       console.log(branchSummary.all);
     } catch (error) {
-      console.error("Error listing branches:", error);
+      console.error("Error listing branches:");
     }
   }
   
@@ -101,7 +101,7 @@ class GitManager {
       await this.git.deleteLocalBranch(branchName);
       console.log(`Branch ${branchName} deleted.`);
     } catch (error) {
-      console.error("Error deleting branch:", error);
+      console.error("Error deleting branch:");
     }
   }
   async createTag(tagName, message) {
@@ -110,7 +110,7 @@ class GitManager {
       await this.git.raw(['tag', '-a', tagName, '-m', message]);
       console.log(`Tag ${tagName} created with message: "${message}"`);
     } catch (error) {
-      console.error("Error creating tag:", error);
+      console.error("Error creating tag:");
     }
   }
   
@@ -119,7 +119,7 @@ class GitManager {
       const tags = await this.git.tags();
       console.log(tags.all);
     } catch (error) {
-      console.error("Error listing tags:", error);
+      console.error("Error listing tags:");
     }
   }
   async stashChanges() {
@@ -127,7 +127,7 @@ class GitManager {
       await this.git.stash();
       console.log('Changes stashed.');
     } catch (error) {
-      console.error("Error stashing changes:", error);
+      console.error("Error stashing changes:");
     }
   }
   
@@ -136,7 +136,7 @@ class GitManager {
       await this.git.stash(['apply', `stash@{${stashIndex}}`]);
       console.log('Stash applied.');
     } catch (error) {
-      console.error("Error applying stash:", error);
+      console.error("Error applying stash:");
     }
   }
   
@@ -145,7 +145,7 @@ class GitManager {
       const stashes = await this.git.stashList();
       console.log(stashes.all);
     } catch (error) {
-      console.error("Error listing stashes:", error);
+      console.error("Error listing stashes:");
     }
   }
         
@@ -154,7 +154,7 @@ class GitManager {
       await this.git.push('origin', branch);
       console.log(`Pushed to branch: ${branch}`);
     } catch (error) {
-      console.error("Error while pushing:", error);
+      console.error("Error while pushing:");
     }
   }
 
@@ -163,7 +163,7 @@ class GitManager {
       await this.git.pull('origin', branch);
       console.log(`Pulled from branch: ${branch}`);
     } catch (error) {
-      console.error("Error while pulling:", error);
+      console.error("Error while pulling:");
     }
   }
 
@@ -172,7 +172,7 @@ class GitManager {
       await this.git.checkoutLocalBranch(branchName);
       console.log(`Switched to new branch: ${branchName}`);
     } catch (error) {
-      console.error("Error while creating branch:", error);
+      console.error("Error while creating branch:");
     }
   }
 
@@ -184,7 +184,7 @@ class GitManager {
       await this.git.commit(message, undefined, options);
       console.log(`Committed with message: "${message}" on date: ${date}`);
     } catch (error) {
-      console.error("Error while backdating commit:", error);
+      console.error("Error while backdating commit:");
     }
   }
   async setGitConfig(key, value, global = false) {
@@ -192,7 +192,7 @@ class GitManager {
       await this.git.addConfig(key, value, global ? 'global' : undefined);
       console.log(`Git config set: ${key} = ${value}`);
     } catch (error) {
-      console.error("Error setting Git config:", error);
+      console.error("Error setting Git config:");
     }
   }
   
@@ -201,7 +201,7 @@ class GitManager {
       const value = await this.git.getConfig(key);
       console.log(`Git config ${key}: ${value}`);
     } catch (error) {
-      console.error("Error getting Git config:", error);
+      console.error("Error getting Git config:");
     }
   }
   
@@ -215,7 +215,7 @@ class GitManager {
         console.log("No merge conflicts.");
       }
     } catch (error) {
-      console.error("Error checking for merge conflicts:", error);
+      console.error("Error checking for merge conflicts:");
     }
   }
   
@@ -224,7 +224,7 @@ class GitManager {
       await this.git.commit(message, undefined, { '--amend': true });
       console.log(`Amended previous commit with message: "${message}"`);
     } catch (error) {
-      console.error("Error while amending commit:", error);
+      console.error("Error while amending commit:");
     }
   }
 
@@ -233,7 +233,7 @@ class GitManager {
       await this.git.raw(['cherry-pick', commitHash]);
       console.log(`Cherry-picked commit: ${commitHash}`);
     } catch (error) {
-      console.error("Error while cherry-picking commit:", error);
+      console.error("Error while cherry-picking commit:");
     }
   }
 }
