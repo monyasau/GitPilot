@@ -19,6 +19,8 @@
   },
   "repository": "https://github.com/monyasau/gitpilot.git",
   "bin": {
-    "gitpilot": "./cli.js"
+    "gitpilot": "./cli.js",
+    "gp": "./cli.js",
+    "gpt": "./cli.js"
   }
 }
