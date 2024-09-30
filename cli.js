@@ -1,10 +1,12 @@
+#!/usr/bin/env node
+
 import { Command } from 'commander';
 import GitManager from './index.js';
 const program = new Command();
 const gitManager = new GitManager();
 
 program
-  .name('GitMan')
+  .name('Gitpilot')
   .description('Git operations')
   .version('1.0.0');
 
