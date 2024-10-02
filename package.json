@@ -2,7 +2,7 @@
   "name": "gitpilot",
   "version": "1.0.0",
   "type": "module",
-  "description": "A CLI tool for managing Git operations",
+  "description": "A CLI tool for simplifying and managing Git operations",
   "main": "cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
