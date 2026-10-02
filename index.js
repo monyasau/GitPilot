@@ -175,26 +175,28 @@ class GitManager {
       console.error("Error while creating branch:");
     }
   }
-
-  async backdateCommit(message, date) {
+  async timedCommit(message, date) {
     try {
-      const options = {
-        '--date': date
+      // Store the original commit method
+      const originalCommit = this.git.commit.bind(this.git);
+  
+      // Override the commit method temporarily to include the date
+      this.git.commit = async (msg, ...args) => {
+        const options = { '--date': date }; // Set the date option
+        return originalCommit(msg, ...args, options); // Call original commit with the new options
       };
-      await this.git.commit(message, undefined, options);
+  
+      // Call the commit method with the provided message
+      await this.commit(message); // Calls the existing commit function
       console.log(`Committed with message: "${message}" on date: ${date}`);
+  
+      // Restore the original commit method
+      this.git.commit = originalCommit;
     } catch (error) {
-      console.error("Error while backdating commit:");
+      console.error("Error while backdating commit:", error);
     }
   }
-  async setGitConfig(key, value, global = false) {
-    try {
-      await this.git.addConfig(key, value, global ? 'global' : undefined);
-      console.log(`Git config set: ${key} = ${value}`);
-    } catch (error) {
-      console.error("Error setting Git config:");
-    }
-  }
+  
   
   async getGitConfig(key) {
     try {

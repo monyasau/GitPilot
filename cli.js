@@ -31,7 +31,21 @@ program
   .command('backdate <message> <date>')
   .description('Commit changes with a past date (use ISO 8601 date format)')
   .action(async (message, date) => {
-    await gitManager.backdateCommit(message, date);
+    await gitManager.timedCommit(message, date);
+  });
+// Timed commit command
+program
+  .command('commitOn <message> <date>')
+  .description('Commit changes with a past date (use ISO 8601 date format)')
+  .action(async (message, date) => {
+    await gitManager.timedCommit(message, date);
+  });
+// Timed commit command
+program
+  .command('commiton <message> <date>')
+  .description('Commit changes with a past date (use ISO 8601 date format)')
+  .action(async (message, date) => {
+    await gitManager.timedCommit(message, date);
   });
 
 // Pull command
